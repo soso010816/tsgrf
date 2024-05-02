@@ -18,7 +18,7 @@ quantile_forest(
   honesty = TRUE,
   honesty.fraction = 0.5,
   honesty.prune.leaves = TRUE,
-  nonlapping_block_size = 2,
+  nonlapping.block.size = 2,
   alpha = 0.05,
   imbalance.penalty = 0,
   compute.oob.predictions = FALSE,
@@ -79,9 +79,13 @@ tree is skipped and does not contribute to the estimate). Setting this to FALSE 
 small/marginally powered data, but requires more trees (note: tuning does not adjust the number of trees).
 Only applies if honesty is enabled. Default is TRUE.}
 
-\item{nonlapping_block_size}{The number of blocks is equal to \eqn{n^{1/\text{nonlapping\_block\_size}}}, then the size of each block is \eqn{n^{(\text{nonlapping\_block\_size}-1)/\text{nonlapping\_block\_size}}}. This formula is based on the assumption that \eqn{n} elements are evenly distributed into \eqn{n^{1/\text{nonlapping\_block\_size}}} blocks. Therefore, the size of each block is the total number \eqn{n} divided by the number of blocks, which is:
-\deqn{\frac{n}{n^{1/\text{nonlapping\_block\_size}}} = n^{1 - 1/\text{nonlapping\_block\_size}} = n^{(\text{nonlapping\_block\_size}-1)/\text{nonlapping\_block\_size}}}
-This calculation helps us effectively estimate the size of each block when dealing with datasets that require block partitioning, such as block sampling in machine learning or data analysis.}
+\item{nonlapping.block.size}{Specifies how to determine the number of blocks and the size of each block based on a given parameter \code{nonlapping_block_size}:
+  \enumerate{
+    \item \strong{Number of Blocks:} The total number of blocks is calculated as \eqn{n^{1/\text{nonlapping\_block\_size}}}. This formula ensures that the data is partitioned into several blocks based on the \code{nonlapping_block_size}.
+    \item \strong{Size of Each Block:} Once the number of blocks is determined, the size of each block is then calculated as \eqn{n^{(\text{nonlapping\_block\_size}-1)/\text{nonlapping\_block\_size}}}. This is derived by dividing the total number of elements \eqn{n} by the number of blocks, leading to:
+    \deqn{\frac{n}{n^{1/\text{nonlapping\_block\_size}}} = n^{1 - 1/\text{nonlapping\_block\_size}} = n^{(\text{nonlapping\_block\_size}-1)/\text{nonlapping\_block\_size}}}
+  }
+}
 
 \item{alpha}{A tuning parameter that controls the maximum imbalance of a split. Default is 0.05.}
 
@@ -94,9 +98,16 @@ to the maximum hardware concurrency.}
 
 \item{seed}{The seed of the C++ random number generator.}
 
-\item{honesty.method}{The method of honesty tree splitting. 0 is the random sample, 1 is in the order of the previous one and the next one.
-2 is training in the first half of block and prediction in the second half. 3 is in the order of random timeseries window.
-4 is random sample of each block }
+\item{honesty.method}{Specifies the method of honesty tree splitting, default is 4.
+  \enumerate{
+    \item \strong{0: Random sample.} The splitting is based on a random sample of the data.
+    \item \strong{1: Sequential order.} The splitting is done in the order of the previous and the next data points.
+    \item \strong{2: Block half-by-half.} Training occurs in the first half of the block and prediction in the second half.
+    \item \strong{3: Random time-series window.} The splitting is based on a randomly chosen window within the time series.
+    \item \strong{4: Random block sample.} A random sample is taken from each block for the splitting process.
+  }
+}
+
 }
 \value{
 A trained quantile forest object.

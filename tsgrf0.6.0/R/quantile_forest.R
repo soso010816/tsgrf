@@ -101,7 +101,7 @@ quantile_forest <- function(X, Y,
                             compute.oob.predictions = FALSE,
                             num.threads = NULL,
                             seed = runif(1, 0, .Machine$integer.max),
-                            honesty_method = 4) {
+                            honesty.method = 4) {
   if (!is.numeric(quantiles) || length(quantiles) < 1) {
     stop("Error: Must provide numeric quantiles")
   } else if (min(quantiles) <= 0 || max(quantiles) >= 1) {
@@ -130,7 +130,8 @@ quantile_forest <- function(X, Y,
                imbalance.penalty = imbalance.penalty,
                compute.oob.predictions = compute.oob.predictions,
                num.threads = num.threads,
-               seed = seed)
+               seed = seed,
+               honesty.method = honesty.method)
 
   forest <- do.call.rcpp(quantile_train, c(data, args))
   class(forest) <- c("quantile_forest", "grf")
