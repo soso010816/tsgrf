@@ -80,7 +80,7 @@ private:
   size_t ci_group_size;
   size_t nonlapping_block_size;
   double sample_fraction;
-
+  
   TreeOptions tree_options;
   SamplingOptions sampling_options;
 
