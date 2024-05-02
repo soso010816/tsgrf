@@ -6,5 +6,5 @@ The current development version can be installed from source using devtools.
 ```R
 install.packages("devtools")
 
-devtools::install_github("soso010816/tsgrf", subdir = "tsgrf0.6.0")
+devtools::install_github("soso010816/tsgrf", subdir = "tsgrf0.6.1")
 ```
