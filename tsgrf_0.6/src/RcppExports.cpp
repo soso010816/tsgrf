@@ -506,7 +506,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type num_threads(num_threadsSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< size_t >::type honesty_method(honesty_methodSEXP);
-    rcpp_result_gen = Rcpp::wrap(quantile_train(quantiles, regression_splitting, train_matrix, outcome_index, mtry, num_trees, min_node_size, sample_fraction, honesty, honesty_fraction, honesty_prune_leaves, nonlapping_block_size, alpha, imbalance_penalty, clusters, samples_per_cluster, compute_oob_predictions, num_threads, seed));
+    rcpp_result_gen = Rcpp::wrap(quantile_train(quantiles, regression_splitting, train_matrix, outcome_index, mtry, num_trees, min_node_size, sample_fraction, honesty, honesty_fraction, honesty_prune_leaves, nonlapping_block_size, alpha, imbalance_penalty, clusters, samples_per_cluster, compute_oob_predictions, num_threads, seed, honesty_method));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -765,7 +765,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_grf_probability_train", (DL_FUNC) &_grf_probability_train, 20},
     {"_grf_probability_predict", (DL_FUNC) &_grf_probability_predict, 7},
     {"_grf_probability_predict_oob", (DL_FUNC) &_grf_probability_predict_oob, 6},
-    {"_grf_quantile_train", (DL_FUNC) &_grf_quantile_train, 19},
+    {"_grf_quantile_train", (DL_FUNC) &_grf_quantile_train, 20},
     {"_grf_quantile_predict", (DL_FUNC) &_grf_quantile_predict, 6},
     {"_grf_quantile_predict_oob", (DL_FUNC) &_grf_quantile_predict_oob, 5},
     {"_grf_regression_train", (DL_FUNC) &_grf_regression_train, 20},

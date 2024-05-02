@@ -59,7 +59,7 @@
 #'                    to the maximum hardware concurrency.
 #' @param seed The seed of the C++ random number generator.
 #'  
-#' @param honesty.method The method used to estimate the honest splitting. Default is 0.
+#' @param honesty.method The method used to estimate the honest splitting. Default is 4.
 #' 
 #' @return A trained regression forest object. If tune.parameters is enabled,
 #'  then tuning information will be included through the `tuning.output` attribute.
@@ -109,7 +109,6 @@ regression_forest <- function(X, Y,
                               num.threads = NULL,
                               seed = runif(1, 0, .Machine$integer.max),
                               honesty.method = 4) {
-  ci.group.size = 1
   has.missing.values <- validate_X(X, allow.na = TRUE)
   validate_sample_weights(sample.weights, X)
   Y <- validate_observations(Y, X)
@@ -139,7 +138,6 @@ regression_forest <- function(X, Y,
                honesty.prune.leaves = honesty.prune.leaves,
                alpha = alpha,
                imbalance.penalty = imbalance.penalty,
-               ci.group.size = ci.group.size,
                nonlapping.block.size = nonlapping.block.size,
                compute.oob.predictions = compute.oob.predictions,
                num.threads = num.threads,
@@ -169,8 +167,8 @@ regression_forest <- function(X, Y,
                                  train = regression_train)
 
     args <- utils::modifyList(args, as.list(tuning.output[["params"]]))
+    
   }
-
   forest <- do.call.rcpp(regression_train, c(data, args))
   class(forest) <- c("regression_forest", "grf")
   forest[["seed"]] <- seed

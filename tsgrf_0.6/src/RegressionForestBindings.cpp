@@ -125,8 +125,7 @@ Rcpp::List ll_regression_train(const Rcpp::NumericMatrix& train_matrix,
                             std::vector<size_t> clusters,
                             unsigned int samples_per_cluster,
                             unsigned int num_threads,
-                            unsigned int seed,
-                            size_t honesty_method) {
+                            unsigned int seed) {
   ForestTrainer trainer = ll_regression_trainer(ll_split_lambda, ll_split_weight_penalty, overall_beta,
                                                ll_split_cutoff, ll_split_variables);
 

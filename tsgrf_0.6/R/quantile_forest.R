@@ -41,13 +41,15 @@
 #'  tree is skipped and does not contribute to the estimate). Setting this to FALSE may improve performance on
 #'  small/marginally powered data, but requires more trees (note: tuning does not adjust the number of trees).
 #'  Only applies if honesty is enabled. Default is TRUE.
+#' @param nonlapping.block.size The forest will grow nonlapping.block.size trees on each subsample.
+#' In order to provide confidence intervals, nonlapping.block.size must be at least 2. Default is 2.
 #' @param alpha A tuning parameter that controls the maximum imbalance of a split. Default is 0.05.
 #' @param imbalance.penalty A tuning parameter that controls how harshly imbalanced splits are penalized. Default is 0.
 #' @param compute.oob.predictions Whether OOB predictions on training set should be precomputed. Default is FALSE.
 #' @param num.threads Number of threads used in training. By default, the number of threads is set
 #'                    to the maximum hardware concurrency.
 #' @param seed The seed of the C++ random number generator.
-#'
+#' @param honesty.method The method used to estimate the honest splitting. Default is 4.
 #' @return A trained quantile forest object.
 #'
 #' @references Athey, Susan, Julie Tibshirani, and Stefan Wager. "Generalized Random Forests".
@@ -105,7 +107,6 @@ quantile_forest <- function(X, Y,
   } else if (min(quantiles) <= 0 || max(quantiles) >= 1) {
     stop("Error: Quantiles must be in (0, 1)")
   }
-  ci.group.size = 1
   has.missing.values <- validate_X(X, allow.na = TRUE)
   Y <- validate_observations(Y, X)
   clusters <- validate_clusters(clusters, X)
@@ -124,7 +125,6 @@ quantile_forest <- function(X, Y,
                honesty = honesty,
                honesty.fraction = honesty.fraction,
                honesty.prune.leaves = honesty.prune.leaves,
-               ci.group.size = ci.group.size,
                nonlapping.block.size = nonlapping.block.size,
                alpha = alpha,
                imbalance.penalty = imbalance.penalty,
