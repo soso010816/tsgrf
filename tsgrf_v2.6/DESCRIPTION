@@ -1,0 +1,44 @@
+Package: tsgrf
+Title: Time Series Generalized Random Forests
+Version: 2.3.1
+Authors@R: c(
+    person("Julie", "Tibshirani", role = c("aut", "cre"), email = "jtibs@cs.stanford.edu"),
+    person("Susan", "Athey", role = "aut"),
+    person("Rina", "Friedberg", role = "ctb"),
+    person("Vitor", "Hadad", role = "ctb"),
+    person("David", "Hirshberg", role = "ctb"),
+    person("Luke", "Miner", role = "ctb"),
+    person("Erik", "Sverdrup", role = "aut"),
+    person("Stefan", "Wager", role = "aut"),
+    person("Marvin", "Wright", role = "ctb")
+    )
+BugReports: https://github.com/grf-labs/grf/issues
+Description: Forest-based statistical estimation and inference.
+  GRF provides non-parametric methods for heterogeneous treatment effects estimation
+  (optionally using right-censored outcomes, multiple treatment arms or outcomes, or instrumental variables),
+  as well as least-squares regression, quantile regression, and survival regression,
+  all with support for missing covariates.
+Depends: R (>= 3.5.0)
+License: GPL-3
+LinkingTo: Rcpp, RcppEigen
+Imports: DiceKriging, lmtest, Matrix, methods, Rcpp (>= 0.12.15),
+        sandwich (>= 2.4-0)
+RoxygenNote: 7.2.3
+Suggests: DiagrammeR, MASS, rdd, survival (>= 3.2-8), testthat (>=
+        3.0.4)
+SystemRequirements: GNU make
+Encoding: UTF-8
+NeedsCompilation: yes
+Packaged: 2023-09-30 22:00:47 UTC; erikcs
+Author: Julie Tibshirani [aut, cre],
+  Susan Athey [aut],
+  Rina Friedberg [ctb],
+  Vitor Hadad [ctb],
+  David Hirshberg [ctb],
+  Luke Miner [ctb],
+  Erik Sverdrup [aut],
+  Stefan Wager [aut],
+  Marvin Wright [ctb]
+Maintainer: Julie Tibshirani <jtibs@cs.stanford.edu>
+Repository: CRAN
+Date/Publication: 2023-10-01 00:10:02 UTC
