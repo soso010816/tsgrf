@@ -71,7 +71,7 @@ void RandomSampler::sample(size_t num_samples,
                            int block_group_size) {
 
   // static_cast 表示类型的转化，由浮点数转化为序列数
-  size_t num_samples_inbag = static_cast<size_t>(num_samples * sample_fraction);
+  // size_t num_samples_inbag = static_cast<size_t>(num_samples * sample_fraction);
   // -------------------add method: block split-------------------------
   block_and_split(samples, num_samples, sample_fraction, blocks, block_group_size);
 }

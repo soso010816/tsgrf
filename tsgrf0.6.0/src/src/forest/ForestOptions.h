@@ -78,9 +78,8 @@ private:
   bool if_block;
   uint num_trees;
   size_t ci_group_size;
-  double sample_fraction;
-  
   size_t nonlapping_block_size;
+  double sample_fraction;
 
   TreeOptions tree_options;
   SamplingOptions sampling_options;
