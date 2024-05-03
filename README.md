@@ -16,6 +16,7 @@ devtools::install_github("soso010816/tsgrf", subdir = "tsgrf0.6.1")
 There is a example for using it.
 
 ```R
+library(tsgrf)
 n <- 500
 p <- 10
 X <- matrix(rnorm(n * p), n, p)
