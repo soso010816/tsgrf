@@ -30,7 +30,7 @@
 #include "ForestOptions.h"
 
 namespace grf {
-
+  
 class ForestTrainer {
 public:
   ForestTrainer(std::unique_ptr<RelabelingStrategy> relabeling_strategy,

@@ -56,6 +56,7 @@ Rcpp::List regression_train(const Rcpp::NumericMatrix& train_matrix,
 
   ForestOptions options(num_trees, nonlapping_block_size, sample_fraction, mtry, min_node_size, honesty,
       honesty_fraction, honesty_prune_leaves, alpha, imbalance_penalty, num_threads, seed, clusters, samples_per_cluster, honesty_method);
+  
   Forest forest = trainer.train(data, options); // 在 ForestTrainer.cpp 中定义,进行训练，并且在训练完成后返回一个 Forest 对象
 
   std::vector<Prediction> predictions;

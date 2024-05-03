@@ -109,7 +109,17 @@ std::unique_ptr<Tree> TreeTrainer::train(const Data& data,
   return tree;
 }
 
-  
+void print_blocks_clusters(const std::vector<std::vector<size_t>>& blocks_clusters) {
+    std::cout << "Printing contents of blocks_clusters:" << std::endl;
+    for (size_t i = 0; i < blocks_clusters.size(); ++i) {
+        std::cout << "Cluster " << (i + 1) << ": ";
+        for (size_t j = 0; j < blocks_clusters[i].size(); ++j) {
+            std::cout << blocks_clusters[i][j] << (j < blocks_clusters[i].size() - 1 ? ", " : "");
+        }
+        std::cout << std::endl;
+    }
+}
+
 // 重载树的训练函数
 std::unique_ptr<Tree> TreeTrainer::train(const Data& data,
                                          RandomSampler& sampler,
@@ -122,6 +132,8 @@ std::unique_ptr<Tree> TreeTrainer::train(const Data& data,
   std::vector<double> split_values;
   std::vector<bool> send_missing_left;
 
+  print_blocks_clusters(blocks_clusters);
+  
   // clusters 实际上就是sample.fraction 抽样后得到的样本索引， clusters 为向量，内为 size t
   // 每次调用 emplace_back() 都会在 child_nodes 向量的末尾添加一个新的空的 std::vector<size_t>
   child_nodes.emplace_back();

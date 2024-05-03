@@ -39,6 +39,7 @@ ForestOptions::ForestOptions(uint num_trees,
                              uint samples_per_cluster,
                              size_t honesty_method):
     if_block(true),
+    ci_group_size(1),
     nonlapping_block_size(nonlapping_block_size),
     sample_fraction(sample_fraction),
     tree_options(mtry, min_node_size, honesty, honesty_fraction, honesty_prune_leaves, alpha, imbalance_penalty, honesty_method),
