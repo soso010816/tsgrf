@@ -12,14 +12,14 @@ library(devtools)
 library(testthat)
 library(roxygen2)
 
-package.name <- "grf"
+package.name <- "tsgrf"
 
 # If built for CRAN, exlude all test except ones with "cran" in the filename
 # by adding the following regex to .Rbuildignore.
 if (!is.na(args[1]) && args[1] == "--as-cran") {
-  write_union("grf/.Rbuildignore", "^tests/testthat/test_((?!cran).).*")
-  write_union("grf/.Rbuildignore", "^tests/testthat/data")
-  write_union("grf/.Rbuildignore", "^tests/testthat/Rplots.pdf")
+  write_union("tsgrf/.Rbuildignore", "^tests/testthat/test_((?!cran).).*")
+  write_union("tsgrf/.Rbuildignore", "^tests/testthat/data")
+  write_union("tsgrf/.Rbuildignore", "^tests/testthat/Rplots.pdf")
 }
 
 # Auto-generate documentation files
