@@ -36,5 +36,5 @@ r.pred <- predict(r.forest)
 
 # Predict with confidence intervals; growing more trees is now recommended.
 r.forest <- regression_forest(X, Y, num.trees = 100)
-r.pred <- predict(r.forest, X.test, estimate.variance = TRUE)
+r.pred <- predict(r.forest, X.test)
 ```
